@@ -9,19 +9,19 @@ type Box2dComponent struct {
 	Body *box2d.B2Body
 }
 
-type collisionEntity struct {
+type CollisionEntity struct {
 	*Box2dComponent
 }
 
 type CollisionSystem struct {
-	Entities []collisionEntity
+	Entities []CollisionEntity
 }
 
 func (c *CollisionSystem) Add(box *Box2dComponent) {
-	c.Entities = append(c.Entities, collisionEntity{box})
+	c.Entities = append(c.Entities, CollisionEntity{box})
 }
 
-func (c *CollisionSystem) New(w *box2d.B2World) {
+func (c *CollisionSystem) NewListener(w *box2d.B2World) {
 	w.SetContactListener(c)
 }
 
